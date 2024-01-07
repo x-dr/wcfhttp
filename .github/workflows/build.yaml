@@ -30,3 +30,10 @@ jobs:
         with:
           name: windows-executable
           path: dist/wcfhttp.exe
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            dist/wcfhttp.exe     
