@@ -36,3 +36,4 @@ watchfiles==0.21.0
 wcferry==39.0.12.0
 wcfhttp==39.0.10.0
 websockets==12.0
+python-dotenv
