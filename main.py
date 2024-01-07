@@ -28,7 +28,7 @@ def main():
         logging.warning(f"回调接口规范参考接收消息回调样例：http://{wcf_http_host}:{wcf_http_port}/docs")
 
 
-    wcf = Wcf(wcf_host, int(wcf_port), wcf_debug)
+    wcf = Wcf(wcf_host, int(wcf_port), bool(wcf_debug))
     home = "https://github.com/lich0821/WeChatFerry"
 
     http = Http(wcf=wcf,
