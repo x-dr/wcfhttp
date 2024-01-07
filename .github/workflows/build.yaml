@@ -23,7 +23,7 @@ jobs:
 
 
       - name: Build Windows executable
-        run: pyinstaller -F wcfhttp.spec
+        run: pyinstaller wcfhttp.spec
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
