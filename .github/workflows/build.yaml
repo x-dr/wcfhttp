@@ -44,8 +44,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           name: ${{ steps.tag.outputs.tag }}
           files: |
             dist/wcfhttp.exe    
