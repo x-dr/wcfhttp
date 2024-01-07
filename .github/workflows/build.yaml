@@ -1,9 +1,13 @@
-name: Build Windows Executable
+name: Build wcfhttp
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "The tag version you want to build"
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
   build:
@@ -21,19 +25,14 @@ jobs:
       - name: Get Tag
         id: tag
         run: |
-          latest_tag=$(curl -sSL --retry 5 "https://api.github.com/repos/v2fly/v2ray-core/releases/latest" | jq .tag_name | awk -F '"' '{print $2}')
-          if [[ -z "${{ github.event.inputs.tag }}" ]]; then
-            echo "Use the latest release tag of wcfhttp: ${latest_tag}"
-            echo "tag=${latest_tag}" >> $GITHUB_OUTPUT
-          else
-            echo "Use tag: ${{ github.event.inputs.tag }}"
-            echo "tag=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
-          fi
+          echo "Use tag: ${{ github.event.inputs.tag }}"
+          echo "tag=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
+          
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Build Windows executable
+      - name: Build wcfhttp
         run: pyinstaller wcfhttp.spec
 
       - name: Upload artifact
